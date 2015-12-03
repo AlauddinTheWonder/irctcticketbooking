@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+/** Developed By Alauddin Ansari
+** wonder_a7@yahoo.co.in
+** April 2015
+**/
+-->
+<script type="text/javascript" src="popup.js"></script>
+
+<style type="text/css">
+	input, button{margin-bottom: 7px;}
+	.heading{font-size: 14px; font-weight: bold;}
+	input[readonly]{border:0; }
+	#searchform, #passlist, #pgform{background: #fdfdfd;}
+	.highlightbtn{background: blue; color: #fff; padding: 3px 5px; text-decoration: none; border: none; font-weight: bold; cursor: pointer;}
+	.big{ padding: 5px 10px; font-size: 20px;}
+	.show{display: block;}
+	.hide{display: none;}
+	.right{float: right; margin-left: 20px;}
+	hr.light{background: #ccc; border: none; height: 1px; margin-bottom: 10px;}
+	.clear{clear: both;}
+	.green{background: green;}
+</style>
+
+</head>
+<body>
+	<div style="width:550px">
+		<button id="fill_automatic" class="highlightbtn big right green">Fill Automatically</button>
+		<hr class="clear" />
+		<div class="heading">Search Form 
+			<a href="#searchform" class="right" id="toggle1">Show/Hide</a>
+			<a href="#" class="right highlightbtn" id="fillsearchtrain">Fill Data</a>
+		</div>
+		<div id="searchform" class="hide">
+			<hr class="light" />
+			<input type="text" id="stn_from" placeholder="NEW DELHI - NDLS" value="NEW DELHI - NDLS" />
+			<label>Station From <a href="javascript:alert('Please get Station Name from IRCTC website.');" title="Please get Station Name from IRCTC website.">?</a></label><br />
+
+			<input type="text" id="stn_to" placeholder="GORAKHPUR JN - GKP" value="GORAKHPUR JN - GKP" />
+			<label>Station To <a href="javascript:alert('Please get Station Name from IRCTC website.');" title="Please get Station Name from IRCTC website.">?</a></label><br />
+
+			<input type="text" id="date_jrn" placeholder="31-12-2015" value="" />
+			<label>Date of Journey (DD-MM-YYYY)</label><br />
+
+			<button id="search_train">Search Trains</button>
+			<button id="save_train">Save Data</button><br />
+		</div>
+		<hr />
+		<!-- ---------------------------------------------------------- -->
+
+		<div class="heading">Passengers List
+			<a href="#passlist" class="right" id="toggle2">Show/Hide</a>
+			<a href="#" class="right highlightbtn" id="fillpasslist">Fill Data</a>
+		</div>
+		<div id="passlist" class="hide">
+			<hr class="light" />
+
+			<input type="text" value="Name" readonly="readonly" size="16" />
+			<input type="text" value="Age" readonly="readonly" size="2" />
+			<input type="text" value="Gender" readonly="readonly" style="width:60px;" />
+			<input type="text" value="Berth Pref" readonly="readonly" style="width:80px;" />
+			<input type="text" value="ID Card Type" readonly="readonly" style="width:80px;" />
+			<input type="text" value="ID Card No." readonly="readonly" style="width:80px;" />
+			<br />
+
+			<input type="text" id="p_name_1" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_1" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_1" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_1" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_1" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_1" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<input type="text" id="p_name_2" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_2" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_2" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_2" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_2" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_2" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<input type="text" id="p_name_3" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_3" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_3" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_3" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_3" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_3" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<input type="text" id="p_name_4" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_4" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_4" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_4" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_4" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_4" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<input type="text" id="p_name_5" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_5" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_5" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_5" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_5" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_5" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<input type="text" id="p_name_6" placeholder="Name" maxlength="16" size="16" />
+			<input type="text" id="p_age_6" placeholder="Age" maxlength="2" size="2">
+			<select id="p_gender_6" style="width:60px;">
+				<option value=" ">Select</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+			<select id="p_birth_6" style="width:80px;">
+				<option value="  ">No</option>
+				<option value="LB">LOWER</option>
+				<option value="MB">MIDDLE</option>
+				<option value="UB">UPPER</option>
+				<option value="SL">SIDE LOWER</option>
+				<option value="SU">SIDE UPPER</option>
+			</select>
+			<select id="p_idtype_6" style="width:90px;">
+				<option value="NULL_IDCARD">ID Card Type</option>
+				<option value="DRIVING_LICENSE">Driving Licence</option>
+				<option value="PASSPORT">Passport</option>
+				<option value="PANCARD">PAN Card</option>
+				<option value="VOTER_ICARD">Voter ID-card</option>
+				<option value="GOVT_ICARD">Govt Issued ID-Card</option>
+				<option value="STUDENT_ICARD">Student ID-Card</option>
+				<option value="BANK_PASSBOOK">Bank Passbook</option>
+				<option value="CREDIT_CARD">Credit card with Photo</option>
+				<option value="UNIQUE_ICARD">Aadhaar ID</option>
+			</select>
+			<input type="text" id="p_idnum_6" placeholder="ID Card Number" maxlength="16" size="16" />
+			<br />
+
+			<button id="fill_psgr">Fill Passengers</button>
+			<button id="save_psgr">Save Data</button><br />
+		</div>
+		<hr />
+		<!-- ---------------------------------------------------------- -->
+
+		<div class="heading">Payment Gateways
+			<a href="#pgform" class="right" id="toggle3">Show/Hide</a>
+			<a href="#" class="right highlightbtn" id="fillpgform">Fill Data</a>
+		</div>
+		<div id="pgform" class="hide">
+			<hr class="light" />
+
+			<select id="pg">
+				<option value="NB">Net Banking</option>
+				<option value="CC">Credit Cards</option>
+			</select>
+			<br />
+			<br />
+
+			<div id="cont_NB" class="payment_containers">
+				<label>Net Banking - Banks List</label><br />
+				<select id="NB_BANKS">
+					<option value="-1">Select Bank</option>
+					<option value="44">ICICI Bank </option>
+					<option value="39">AXIS Bank</option>
+					<option value="36">HDFC Bank</option>
+					<option value="1">State Bank of India</option>
+					<option value="34">Punjab National Bank </option>
+					<option value="46">Kotak Mahindra Bank</option>
+					<option value="10">State Bank of India and Associates</option>
+					<option value="22">Federal Bank</option>
+					<option value="29">Indian Bank</option>
+					<option value="28">Union Bank of India</option>
+					<option value="31">Andhra Bank</option>
+					<option value="35">Allahabad Bank</option>
+					<option value="38">Vijaya Bank</option>
+					<option value="37">Bank of Baroda</option>
+					<option value="42">Karnataka Bank</option>
+					<option value="43">Oriental Bank of Commerce</option>
+					<option value="40">Karur Vysya Bank</option>
+					<option value="47">INGVysya Bank</option>
+					<option value="45">IndusInd Bank</option>
+					<option value="51">IMPS</option>
+					<option value="50">Central Bank of India</option>
+					<option value="48">Bank of India</option>
+					<option value="54">Syndicate Bank</option>
+					<option value="53">Bank of Maharashatra</option>
+					<option value="52">IDBI Bank</option>
+					<option value="56">Corporation Bank</option>
+					<option value="60">Yes Bank</option>
+					<option value="64">Nepal SBI Bank Ltd.</option>
+				</select>
+			</div>
+
+			<div id="cont_CC" class="payment_containers" style="display:none;">
+				<label>Credit Cards - Banks List</label><br />
+				<select id="CC_BANKS">
+					<option value="-1">Select Bank</option>
+					<option value="4">Visa/Master Card(Powered By ICICI BANK)</option>
+					<option value="21">Visa/Master Card(Powered By HDFC BANK)</option>
+					<option value="17">Visa/Master Card(Powered By CITI BANK)</option>
+					<option value="30">Visa/Master Card(Powered By AXIS BANK)</option>
+					<option value="58">RuPay Card (Powered by Kotak Bank)</option>
+					<option value="27">American Express</option>
+				</select>
+			</div>
+
+			<br />
+			<button id="fill_pg">Fill Payment Gateway</button>
+			<button id="save_pg">Save Data</button><br />
+		</div>
+
+	</div>
+</body>
+</html>
